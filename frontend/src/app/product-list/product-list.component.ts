@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from '../api.service';
-import { Product } from '../product';
+import { Product } from './product.model';
 
 @Component({
   selector: 'app-product-list',

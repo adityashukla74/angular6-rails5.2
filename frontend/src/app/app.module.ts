@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -11,7 +10,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { OrderListComponent } from './order-list/order-list.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
-
+import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,8 +22,8 @@ import { HttpClientModule } from '../../node_modules/@angular/common/http';
     CustomerListComponent,
   ],
   imports: [
-    BrowserModule,
     FormsModule,
+    BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
       {
