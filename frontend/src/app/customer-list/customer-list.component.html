@@ -1,3 +1,29 @@
-<p>
-  customer-list works!
-</p>
+<div class="panel panel-default" style="margin-top:10px;">
+  <div class="panel-heading">
+    Customers
+  </div>
+  <div class="panel-body" style="position:relative">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Actions</th>
+            <th *ngFor="let column of columns">
+              {{column}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let row of rows">
+            <button (click)="delete(row['id'])">delete</button> ||
+            <button (click)="update(row['id'])">update</button>
+
+            <td *ngFor="let column of columns">
+              {{row[column]}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
