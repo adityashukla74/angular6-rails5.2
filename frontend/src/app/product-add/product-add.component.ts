@@ -25,4 +25,21 @@ export class ProductAddComponent implements OnInit {
       }
     })
   }
+
+  public onSubmit() {
+    alert("Added a product:" + this.product.name);
+    if (this.product.id) {
+      this.apiService.update("products" + this.product.id, this.product).subscribe((r) => {
+        alert(r);
+        alert("Product Updated");
+      })
+    }
+    else {
+      this.apiService.post("products", this.product).subscribe((r) => {
+        alert(r);
+        this.product = new Product();
+        alert("Product Added");
+      })
+    }
+  }
 }
