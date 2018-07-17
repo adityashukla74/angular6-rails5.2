@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../product-list/product.model'
+import { Product } from '../product-list/product.model';
 import { ApiService } from '../api.service';
 import { ActivatedRoute } from '@angular/router';
+
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -10,15 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductAddComponent implements OnInit {
 
   public product: Product = new Product();
-  constructor(public apiService: ApiService, public actRoute: ActivatedRoute) { }
+  constructor(public apiService: ApiService, public acRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.actRoute.params.subscribe((data: any) => {
-      alert(data.id);
+
+    this.acRoute.params.subscribe((data: any) => {
+      console.log(data.id);
       if (data && data.id) {
         this.apiService.get("products/" + data.id).subscribe((data: Product) => {
           this.product = data;
-        })
+        });
       }
       else {
         this.product = new Product();
@@ -27,19 +29,19 @@ export class ProductAddComponent implements OnInit {
   }
 
   public onSubmit() {
-    alert("Added a product:" + this.product.name);
+    console.log("Adding a product: " + this.product.name);
     if (this.product.id) {
-      this.apiService.update("products" + this.product.id, this.product).subscribe((r) => {
-        alert(r);
-        alert("Product Updated");
+      this.apiService.update("products/" + this.product.id, this.product).subscribe((r) => {
+        console.log(r);
+        alert("Product updated !");
       })
     }
-    else {
+    else
       this.apiService.post("products", this.product).subscribe((r) => {
-        alert(r);
+        console.log(r);
         this.product = new Product();
-        alert("Product Added");
-      })
-    }
+        alert("Product added !");
+
+      });
   }
 }
