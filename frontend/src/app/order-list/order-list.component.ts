@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-order-list',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-list.component.css']
 })
 export class OrderListComponent implements OnInit {
-
-  constructor() { }
+  public columns = ['id','reference'];
+  public rows; 
+  
+  constructor(public apiService: ApiService) { }
 
   ngOnInit() {
+    this.apiService.get("orders").subscribe((data)=>{
+      console.log(data);
+      this.rows = data;
+    });
   }
 
 }
